@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center pb-10 mb-10 border-b border-slate-900 w-full select-none">
         <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-4 cursor-pointer group" onClick={() => navigateTo('/')}>
           <span className="text-3xl sm:text-4xl font-extrabold tracking-widest uppercase transition-colors duration-300">
-            <span className="text-black drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,0.85)]">ÁGUA</span> <span className="text-blue-500">FÁCIL</span>
+            <span className="text-white">ÁGUA</span> <span className="text-blue-500">FÁCIL</span>
           </span>
           {/* Extremely eye-catching animated logo right after the company name */}
           <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-blue-600/15 border-2 border-blue-500/60 shadow-[0_0_22px_rgba(59,130,246,0.55)] transform hover:scale-125 hover:rotate-12 transition-all duration-300 animate-[bounce_4s_infinite]">

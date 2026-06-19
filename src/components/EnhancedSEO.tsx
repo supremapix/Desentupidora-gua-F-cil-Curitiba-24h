@@ -71,7 +71,7 @@ export default function EnhancedSEO({ title, description, canonicalUrl, keywords
     ogUrl.setAttribute('content', canonicalUrl);
 
     // Sync Open Graph Image
-    const defaultImage = "https://img.supremamidia.com/suprema-img.png";
+    const defaultImage = "https://img.aguafacil.app.br/agua-facil-desentupidora-em-curitiba-bairros.jpg";
     let ogImgTag = document.querySelector("meta[property='og:image']") as HTMLMetaElement;
     if (!ogImgTag) {
       ogImgTag = document.createElement('meta');
@@ -129,5 +129,15 @@ export default function EnhancedSEO({ title, description, canonicalUrl, keywords
 
   }, [title, description, canonicalUrl, keywords, schema, ogImage]);
 
-  return null; // Side-effect only component
+  return (
+    <div className="sr-only" aria-hidden="true" style={{ width: 0, height: 0, overflow: 'hidden', position: 'absolute' }}>
+      <img 
+        src="https://img.aguafacil.app.br/agua-facil-desentupidora-em-curitiba-bairros.jpg" 
+        alt={`${title} - ${description}`} 
+        title={title}
+        referrerPolicy="no-referrer"
+        loading="eager"
+      />
+    </div>
+  );
 }

@@ -25,7 +25,7 @@ async function startServer() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Desentupidora Água Fácil Curitiba",
-      "image": "https://img.supremamidia.com/suprema-img.png",
+      "image": "https://img.aguafacil.app.br/agua-facil-desentupidora-em-curitiba-bairros.jpg",
       "@id": "https://aguafacil.app.br/#localbusiness",
       "url": "https://aguafacil.app.br",
       "telephone": "+55-41-3345-1194",
@@ -177,15 +177,55 @@ async function startServer() {
   <meta property="og:description" content="${seo.description}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://img.supremamidia.com/suprema-img.png" />
+  <meta property="og:image" content="https://img.aguafacil.app.br/agua-facil-desentupidora-em-curitiba-bairros.jpg" />
   <script type="application/ld+json" class="dynamic-schema">
     ${JSON.stringify(seo.schema, null, 2)}
   </script>
 `;
 
+    const seoImageInBody = `
+<div class="sr-only" aria-hidden="true" style="width: 0; height: 0; overflow: hidden; position: absolute;">
+  <img src="https://img.aguafacil.app.br/agua-facil-desentupidora-em-curitiba-bairros.jpg" alt="${seo.title} - ${seo.description}" title="${seo.title}" referrerPolicy="no-referrer" />
+</div>
+`;
+    if (modifiedHtml.includes("<body>")) {
+      modifiedHtml = modifiedHtml.replace("<body>", `<body>\n${seoImageInBody}`);
+    } else if (modifiedHtml.includes("<body ")) {
+      const match = modifiedHtml.match(/<body[^>]*>/);
+      if (match) {
+        modifiedHtml = modifiedHtml.replace(match[0], `${match[0]}\n${seoImageInBody}`);
+      }
+    }
+
     modifiedHtml = modifiedHtml.replace("</head>", `${metaTags}\n</head>`);
     return modifiedHtml;
   }
+
+  // 301 Redirects for Legacy URLs (*.html) to prevent 404s and pass SEO rank
+  app.get("/*.html", (req, res, next) => {
+    const urlPath = req.path;
+    const filename = path.basename(urlPath, ".html").toLowerCase();
+
+    if (filename === "index") {
+      return next();
+    }
+
+    // Check if filename matches a location slug
+    const loc = getBySlug(filename);
+    if (loc) {
+      const prefix = loc.type === 'city' ? 'cidade' : 'bairro';
+      return res.redirect(301, `/${prefix}/${loc.slug}`);
+    }
+
+    // Check if filename matches a service slug
+    const serv = getServiceBySlug(filename);
+    if (serv) {
+      return res.redirect(301, `/servico/${serv.slug}`);
+    }
+
+    // Default fallback to home if no match is found
+    return res.redirect(301, "/");
+  });
 
   if (process.env.NODE_ENV !== "production") {
     // DEV MODE: Mount Vite dev server middleware

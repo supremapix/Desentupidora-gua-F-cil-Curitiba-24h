@@ -42,6 +42,46 @@ export default function App() {
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
+  // Client-side legacy route normalizer to prevent 404s and redirect old structures
+  useEffect(() => {
+    const path = currentPath.toLowerCase();
+    
+    // 1. If path ends with .html, strip it and find matching location/service
+    if (path.endsWith('.html')) {
+      const cleanName = path.substring(1, path.length - 5); // strip '/' and '.html'
+      
+      const matchedLoc = ALL_LOCATIONS.find(loc => loc.slug.toLowerCase() === cleanName);
+      if (matchedLoc) {
+        const prefix = matchedLoc.type === 'city' ? 'cidade' : 'bairro';
+        navigateTo(`/${prefix}/${matchedLoc.slug}`);
+        return;
+      }
+
+      const matchedServ = SERVICES_LIST.find(s => s.slug.toLowerCase() === cleanName);
+      if (matchedServ) {
+        navigateTo(`/servico/${matchedServ.slug}`);
+        return;
+      }
+    }
+
+    // 2. If path is a flat single-level path (e.g., /bairro-alto), check if it maps to a location/service
+    const possibleSlug = path.substring(1); // strip '/'
+    if (possibleSlug && !path.slice(1).includes('/')) {
+      const matchedLoc = ALL_LOCATIONS.find(loc => loc.slug.toLowerCase() === possibleSlug);
+      if (matchedLoc) {
+        const prefix = matchedLoc.type === 'city' ? 'cidade' : 'bairro';
+        navigateTo(`/${prefix}/${matchedLoc.slug}`);
+        return;
+      }
+
+      const matchedServ = SERVICES_LIST.find(s => s.slug.toLowerCase() === possibleSlug);
+      if (matchedServ) {
+        navigateTo(`/servico/${matchedServ.slug}`);
+        return;
+      }
+    }
+  }, [currentPath]);
+
   // Safe router parser
   let matchedView = 'home';
   let matchedSlug = '';
