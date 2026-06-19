@@ -136,8 +136,8 @@ export default function Header() {
               <span className="absolute bottom-0 w-full h-1/2 bg-blue-500/30 rounded-full blur-sm animate-[pulse_2s_infinite]"></span>
             </div>
             <div>
-              <span className={`text-lg md:text-xl font-black tracking-tighter flex items-center gap-1 transition-all ${scrolled ? 'text-slate-900' : 'text-slate-900 md:text-slate-900'}`}>
-                ÁGUA <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">FÁCIL</span>
+              <span className={`text-lg md:text-xl font-black tracking-tighter flex items-center gap-1 transition-all`}>
+                <span className="text-black">ÁGUA</span> <span className="text-blue-500">FÁCIL</span>
               </span>
               <span className="block text-[9px] uppercase tracking-widest text-slate-500 font-mono -mt-1 font-bold">DESENTUPIDORA 24h</span>
             </div>

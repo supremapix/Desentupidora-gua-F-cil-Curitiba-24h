@@ -449,6 +449,93 @@ function HomeView({ navigateTo }: { navigateTo: (p: string) => void }) {
         </div>
       </div>
 
+      {/* MARQUEE 1: PROMOTIONAL & CONTACT STRIP (BEFORE HERO) */}
+      <section className="bg-slate-950 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-slate-200 text-xs py-3 border-b border-blue-900/40 relative overflow-hidden select-none w-full shadow-md z-20">
+        <div className="flex w-full overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap min-w-max hover:[animation-play-state:paused] cursor-grab active:cursor-grabbing">
+            {/* Block 1 */}
+            <div className="flex items-center gap-8 pr-8">
+              <span className="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 font-black px-2 py-0.5 rounded text-[10px] tracking-widest uppercase font-mono shrink-0">
+                ⚡ PROMOÇÃO DO DIA
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Qualquer desentupimento de pias, ralos ou vasos à partir de apenas <span className="text-green-400 font-black underline decoration-green-500/50">R$ 50,00 reais</span> o Serviço! Aproveite Já!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <a href="tel:4133451194" className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-bold transition-colors shrink-0">
+                <Phone size={12} className="text-blue-500 fill-blue-500/10 shrink-0" />
+                <span>PLANTÃO TELEFONE FIXO 24H:</span>
+                <span className="font-mono text-white underline decoration-blue-500/30">(41) 3345-1194</span>
+              </a>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <a href="https://wa.me/5541995694912?text=Olá,%20gostaria%20de%2520um%2520orçamento%20de%20desentupimento." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 font-bold transition-colors shrink-0">
+                <MessageSquare size={12} className="text-green-500 fill-green-500/10 shrink-0" />
+                <span>CHAME NO WHATSAPP:</span>
+                <span className="font-mono text-white underline decoration-green-500/30">(41) 99569-4912</span>
+              </a>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-slate-300 font-medium text-[12px] sm:text-[13px] shrink-0">
+                <Clock size={12} className="text-blue-400 shrink-0" />
+                <span>CHEGADA RÁPIDA EM CURITIBA EM 30 MINUTOS !</span>
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-slate-300 font-medium text-[12px] sm:text-[13px] shrink-0">
+                <ShieldCheck size={12} className="text-blue-400 shrink-0" />
+                <span>VISITA E ORÇAMENTO TOTALMENTE GRÁTIS - SEM TAXA DE DESLOCAMENTO !</span>
+              </span>
+            </div>
+
+            {/* Block 2 */}
+            <div className="flex items-center gap-8 pr-8">
+              <span className="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 font-black px-2 py-0.5 rounded text-[10px] tracking-widest uppercase font-mono shrink-0">
+                ⚡ PROMOÇÃO DO DIA
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Qualquer desentupimento de pias, ralos ou vasos à partir de apenas <span className="text-green-400 font-black underline decoration-green-500/50">R$ 50,00 reais</span> o Serviço! Aproveite Já!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <a href="tel:4133451194" className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-bold transition-colors shrink-0">
+                <Phone size={12} className="text-blue-500 fill-blue-500/10 shrink-0" />
+                <span>PLANTÃO TELEFONE FIXO 24H:</span>
+                <span className="font-mono text-white underline decoration-blue-500/30">(41) 3345-1194</span>
+              </a>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <a href="https://wa.me/5541995694912?text=Olá,%20gostaria%20de%2520um%2520orçamento%20de%20desentupimento." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 font-bold transition-colors shrink-0">
+                <MessageSquare size={12} className="text-green-500 fill-green-500/10 shrink-0" />
+                <span>CHAME NO WHATSAPP:</span>
+                <span className="font-mono text-white underline decoration-green-500/30">(41) 99569-4912</span>
+              </a>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-slate-300 font-medium text-[12px] sm:text-[13px] shrink-0">
+                <Clock size={12} className="text-blue-400 shrink-0" />
+                <span>CHEGADA RÁPIDA EM CURITIBA EM 30 MINUTOS !</span>
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">•</span>
+
+              <span className="inline-flex items-center gap-1.5 text-slate-300 font-medium text-[12px] sm:text-[13px] shrink-0">
+                <ShieldCheck size={12} className="text-blue-400 shrink-0" />
+                <span>VISITA E ORÇAMENTO TOTALMENTE GRÁTIS - SEM TAXA DE DESLOCAMENTO !</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-b from-blue-50/70 via-white to-white pt-16 pb-24 md:pb-32 overflow-hidden border-b border-indigo-100">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-105/30 via-white to-white z-0"></div>
@@ -523,6 +610,105 @@ function HomeView({ navigateTo }: { navigateTo: (p: string) => void }) {
           {/* Hero right Form container */}
           <div className="lg:col-span-5 w-full" id="agendamento">
             <LeadForm />
+          </div>
+        </div>
+      </section>
+
+      {/* NEUROMARKETING / HIGH-CONVERTING SALES MARQUEE STRIP */}
+      <section className="bg-slate-950 bg-gradient-to-r from-slate-950 via-blue-950/20 to-slate-950 text-slate-200 text-xs py-3.5 border-b border-t border-blue-900/40 relative overflow-hidden select-none w-full shadow-lg z-20">
+        <div className="flex w-full overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap min-w-max hover:[animation-play-state:paused] cursor-grab active:cursor-grabbing">
+            {/* Block 1 */}
+            <div className="flex items-center gap-10 pr-10">
+              <span className="inline-flex items-center gap-1.5 bg-red-600 text-white font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0 shadow-[0_0_12px_rgba(220,38,38,0.5)]">
+                🚨 ALERTA DE SAÚDE E SEGURANÇA
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                O esgoto entupido atrai pragas e bactérias nocivas! Resolva hoje mesmo antes que o refluxo destrua seus móveis e canos!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-blue-600/20 border border-blue-500/35 text-blue-400 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                ⭐ PROVA SOCIAL REAL
+              </span>
+              <span className="font-extrabold text-slate-100 text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Mais de <span className="text-blue-400 underline decoration-blue-500/40">12.000 famílias</span> curitibanas atendidas com nota máxima e aprovação imediata de 100%!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-green-600 text-white font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0 shadow-[0_0_12px_rgba(22,163,74,0.5)]">
+                🎁 SUPER DESCONTO HOJE
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Desentupimentos especializados a partir de apenas <span className="text-green-400 font-black underline decoration-green-500/40">R$ 50,00 reais</span> o Serviço completo!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-yellow-500 text-slate-950 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                🛠️ TECNOLOGIA PREVENTIVA
+              </span>
+              <span className="font-extrabold text-slate-100 text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Zero Quebra-Quebra! Equipamentos por vídeo-inspeção computadorizada que evitam danos dolorosos em pisos e azulejos!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-sky-600/20 border border-sky-450/30 text-sky-400 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                🎯 COMPROMISSO INCONDICIONAL
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Visita técnica e orçamento <span className="text-yellow-400 font-black">100% GRÁTIS</span> e sem taxas ocultas! Ligue Fixo (41) 3345-1194 ou WhatsApp (41) 99569-4912!
+              </span>
+            </div>
+
+            {/* Block 2 (Duplicate for Seamless Loop) */}
+            <div className="flex items-center gap-10 pr-10">
+              <span className="inline-flex items-center gap-1.5 bg-red-600 text-white font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0 shadow-[0_0_12px_rgba(220,38,38,0.5)]">
+                🚨 ALERTA DE SAÚDE E SEGURANÇA
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                O esgoto entupido atrai pragas e bactérias nocivas! Resolva hoje mesmo antes que o refluxo destrua seus móveis e canos!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-blue-600/20 border border-blue-500/35 text-blue-400 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                ⭐ PROVA SOCIAL REAL
+              </span>
+              <span className="font-extrabold text-slate-100 text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Mais de <span className="text-blue-400 underline decoration-blue-500/40">12.000 famílias</span> curitibanas atendidas com nota máxima e aprovação imediata de 100%!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-green-600 text-white font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0 shadow-[0_0_12px_rgba(22,163,74,0.5)]">
+                🎁 SUPER DESCONTO HOJE
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Desentupimentos especializados a partir de apenas <span className="text-green-400 font-black underline decoration-green-500/40">R$ 50,00 reais</span> o Serviço completo!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-yellow-500 text-slate-950 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                🛠️ TECNOLOGIA PREVENTIVA
+              </span>
+              <span className="font-extrabold text-slate-100 text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Zero Quebra-Quebra! Equipamentos por vídeo-inspeção computadorizada que evitam danos dolorosos em pisos e azulejos!
+              </span>
+
+              <span className="text-blue-500 font-extrabold px-1 shrink-0">★</span>
+
+              <span className="inline-flex items-center gap-1.5 bg-sky-600/20 border border-sky-450/30 text-sky-400 font-black px-2.5 py-1 rounded text-[10px] tracking-widest uppercase shrink-0">
+                🎯 COMPROMISSO INCONDICIONAL
+              </span>
+              <span className="font-extrabold text-white text-[12px] sm:text-[13px] tracking-wide shrink-0">
+                Visita técnica e orçamento <span className="text-yellow-400 font-black">100% GRÁTIS</span> e sem taxas ocultas! Ligue Fixo (41) 3345-1194 ou WhatsApp (41) 99569-4912!
+              </span>
+            </div>
           </div>
         </div>
       </section>
