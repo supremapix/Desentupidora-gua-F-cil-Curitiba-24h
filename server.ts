@@ -54,10 +54,15 @@ async function startServer() {
     };
 
     try {
-      if (urlPath === '/' || urlPath === '') {
+      let cleanPath = urlPath.split('?')[0].split('#')[0];
+      if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+        cleanPath = cleanPath.slice(0, -1);
+      }
+
+      if (cleanPath === '/' || cleanPath === '') {
         // Keeps default home SEO
-      } else if (urlPath.startsWith('/servico/')) {
-        const slug = urlPath.substring(9);
+      } else if (cleanPath.startsWith('/servico/')) {
+        const slug = cleanPath.substring(9);
         const sInfo = getServiceBySlug(slug);
         if (sInfo) {
           const sContent = generateServiceContent(sInfo);
@@ -90,9 +95,9 @@ async function startServer() {
             }
           ];
         }
-      } else if (urlPath.startsWith('/bairro/') || urlPath.startsWith('/cidade/')) {
-        const isBairro = urlPath.startsWith('/bairro/');
-        const slug = isBairro ? urlPath.substring(8) : urlPath.substring(8);
+      } else if (cleanPath.startsWith('/bairro/') || cleanPath.startsWith('/cidade/')) {
+        const isBairro = cleanPath.startsWith('/bairro/');
+        const slug = cleanPath.substring(8);
         const lInfo = getBySlug(slug);
         if (lInfo) {
           const lContent = generateLocationContent(lInfo);
@@ -125,12 +130,12 @@ async function startServer() {
             }
           ];
         }
-      } else if (urlPath === '/blog') {
+      } else if (cleanPath === '/blog') {
         title = "Blog Técnico sobre Desentupimentos e Manutenções Hidráulicas";
         description = "Confira dicas fundamentais de prevenção de entupimentos de pias, vasos, ralos, além de esclarecer preços, legislações de caixas de gordura e mais.";
         keywords = "blog desentupidora, dicas encanador, como desentupir cano, evitar entupimento pia";
-      } else if (urlPath.startsWith('/blog/')) {
-        const slug = urlPath.substring(6);
+      } else if (cleanPath.startsWith('/blog/')) {
+        const slug = cleanPath.substring(6);
         const post = getPostBySlug(slug);
         if (post) {
           title = `${post.title} | Dicas Úteis Água Fácil`;

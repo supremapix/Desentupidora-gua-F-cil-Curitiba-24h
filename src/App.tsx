@@ -86,27 +86,38 @@ export default function App() {
   let matchedView = 'home';
   let matchedSlug = '';
 
-  if (currentPath === '/' || currentPath === '') {
+  // Clean the path by stripping query parameters and hashes, and removing trailing slashes except for '/'
+  const getCleanPath = (rawPath: string) => {
+    let p = rawPath.split('?')[0].split('#')[0];
+    if (p.length > 1 && p.endsWith('/')) {
+      p = p.slice(0, -1);
+    }
+    return p;
+  };
+  
+  const cleanPath = getCleanPath(currentPath);
+
+  if (cleanPath === '/' || cleanPath === '') {
     matchedView = 'home';
-  } else if (currentPath.startsWith('/servico/')) {
+  } else if (cleanPath.startsWith('/servico/')) {
     matchedView = 'service';
-    matchedSlug = currentPath.substring(9);
-  } else if (currentPath.startsWith('/bairro/')) {
+    matchedSlug = cleanPath.substring(9);
+  } else if (cleanPath.startsWith('/bairro/')) {
     matchedView = 'location';
-    matchedSlug = currentPath.substring(8);
-  } else if (currentPath.startsWith('/cidade/')) {
+    matchedSlug = cleanPath.substring(8);
+  } else if (cleanPath.startsWith('/cidade/')) {
     matchedView = 'location';
-    matchedSlug = currentPath.substring(8);
-  } else if (currentPath === '/blog') {
+    matchedSlug = cleanPath.substring(8);
+  } else if (cleanPath === '/blog') {
     matchedView = 'blog-index';
-  } else if (currentPath.startsWith('/blog/')) {
+  } else if (cleanPath.startsWith('/blog/')) {
     matchedView = 'blog-post';
-    matchedSlug = currentPath.substring(6);
-  } else if (currentPath === '/mapa-do-site') {
+    matchedSlug = cleanPath.substring(6);
+  } else if (cleanPath === '/mapa-do-site') {
     matchedView = 'sitemap';
-  } else if (currentPath === '/contato') {
+  } else if (cleanPath === '/contato') {
     matchedView = 'contact';
-  } else if (currentPath === '/quem-somos') {
+  } else if (cleanPath === '/quem-somos') {
     matchedView = 'about';
   } else {
     // Fallback to home

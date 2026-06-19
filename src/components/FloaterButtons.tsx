@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Phone, MessageSquare, ShieldAlert, ArrowUp, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { 
+  Phone, MessageSquare, ArrowUp, Zap, 
+  Share2, Twitter, Linkedin, Pin, Link, Check 
+} from 'lucide-react';
 
 export default function FloaterButtons() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,16 +21,157 @@ export default function FloaterButtons() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleCopy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((err) => console.error('Erro ao copiar link:', err));
+  };
+
+  // Dynamic share text and URL builder
+  const getShareData = () => {
+    const title = document.title || 'Desentupidora Água Fácil Curitiba 24h';
+    const url = window.location.href;
+    return { title, url };
+  };
+
+  const shareOnWhatsApp = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const { title, url } = getShareData();
+    const text = `Confira a Desentupidora Água Fácil: ${title} - ${url}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const shareOnX = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const { title, url } = getShareData();
+    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const shareOnLinkedin = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const { url } = getShareData();
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const shareOnPinterest = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const { title, url } = getShareData();
+    window.open(`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(title)}`, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <>
-      {/* Floating Buttons on Desktop & Mobile */}
-      <div className="fixed bottom-20 right-6 sm:bottom-6 sm:right-6 z-40 flex flex-col items-center gap-3">
+      {/* FLOATING SHARE MENU (Bottom Left Stack) - Accessible in all pages */}
+      <div className="fixed bottom-20 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col-reverse items-start gap-2.5">
+        
+        {/* Main Floating Share Toggle Button */}
+        <button
+          onClick={() => setIsShareOpen(!isShareOpen)}
+          aria-label="Compartilhar página"
+          aria-expanded={isShareOpen}
+          className={`flex items-center justify-center w-12 h-12 rounded-full border shadow-lg transition-all duration-300 cursor-pointer ${
+            isShareOpen 
+              ? 'bg-blue-600 border-blue-500 text-white rotate-90 scale-110 shadow-blue-500/30' 
+              : 'bg-slate-900/95 border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-700'
+          }`}
+        >
+          <Share2 size={20} className={isShareOpen ? 'animate-pulse' : ''} />
+        </button>
+
+        {/* Branded Network Share List (Transitions upward above the primary toggle) */}
+        {isShareOpen && (
+          <div className="flex flex-col items-center gap-2.5 mb-1 animate-in fade-in slide-in-from-bottom-4 duration-300">
+            
+            {/* Copy Link URL */}
+            <div className="relative group/share">
+              <button
+                onClick={handleCopy}
+                aria-label="Copiar link"
+                className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 cursor-pointer ${
+                  copied 
+                    ? 'bg-green-600 border-green-500 text-white scale-110 shadow-[0_0_12px_rgba(34,197,94,0.4)]' 
+                    : 'bg-slate-950/95 border-slate-800 text-slate-400 hover:text-slate-100 hover:bg-slate-900 hover:border-slate-700 shadow-md'
+                }`}
+              >
+                {copied ? <Check size={16} /> : <Link size={16} />}
+              </button>
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-slate-950/95 border border-slate-800 text-slate-100 text-[10px] font-black px-2 py-1 rounded shadow-xl whitespace-nowrap opacity-100 sm:opacity-0 sm:group-hover/share:opacity-100 transition-opacity duration-200">
+                {copied ? 'Link Copiado! 🔗' : 'Copiar URL do site'}
+              </div>
+            </div>
+
+            {/* WhatsApp Share */}
+            <div className="relative group/share">
+              <button
+                onClick={shareOnWhatsApp}
+                aria-label="Compartilhar no WhatsApp"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-950/95 border border-slate-800 text-green-500 hover:text-white hover:bg-green-600 hover:border-green-500 transition-all duration-200 shadow-md cursor-pointer"
+              >
+                <MessageSquare size={16} className="fill-green-500/10 hover:fill-none" />
+              </button>
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-slate-950/95 border border-slate-800 text-slate-100 text-[10px] font-black px-2 py-1 rounded shadow-xl whitespace-nowrap opacity-100 sm:opacity-0 sm:group-hover/share:opacity-100 transition-opacity duration-200">
+                Compartilhar no WhatsApp
+              </div>
+            </div>
+
+            {/* X (formerly Twitter) Share */}
+            <div className="relative group/share">
+              <button
+                onClick={shareOnX}
+                aria-label="Compartilhar no X"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-950/95 border border-slate-800 text-sky-400 hover:text-white hover:bg-sky-600 hover:border-sky-500 transition-all duration-200 shadow-md cursor-pointer"
+              >
+                <Twitter size={16} className="fill-sky-400/10 hover:fill-none" />
+              </button>
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-slate-950/95 border border-slate-800 text-slate-100 text-[10px] font-black px-2 py-1 rounded shadow-xl whitespace-nowrap opacity-100 sm:opacity-0 sm:group-hover/share:opacity-100 transition-opacity duration-200">
+                Compartilhar no X (Twitter)
+              </div>
+            </div>
+
+            {/* LinkedIn Share */}
+            <div className="relative group/share">
+              <button
+                onClick={shareOnLinkedin}
+                aria-label="Compartilhar no LinkedIn"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-950/95 border border-slate-800 text-blue-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-200 shadow-md cursor-pointer"
+              >
+                <Linkedin size={16} />
+              </button>
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-slate-950/95 border border-slate-800 text-slate-100 text-[10px] font-black px-2 py-1 rounded shadow-xl whitespace-nowrap opacity-100 sm:opacity-0 sm:group-hover/share:opacity-100 transition-opacity duration-200">
+                Compartilhar no LinkedIn
+              </div>
+            </div>
+
+            {/* Pinterest Share */}
+            <div className="relative group/share">
+              <button
+                onClick={shareOnPinterest}
+                aria-label="Compartilhar no Pinterest"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-950/95 border border-slate-800 text-red-500 hover:text-white hover:bg-red-600 hover:border-red-500 transition-all duration-200 shadow-md cursor-pointer"
+              >
+                <Pin size={16} />
+              </button>
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-slate-950/95 border border-slate-800 text-slate-100 text-[10px] font-black px-2 py-1 rounded shadow-xl whitespace-nowrap opacity-100 sm:opacity-0 sm:group-hover/share:opacity-100 transition-opacity duration-200">
+                Compartilhar no Pinterest
+              </div>
+            </div>
+
+          </div>
+        )}
+      </div>
+
+      {/* RIGHT-SIDE FLOATING BUTTONS (WhatsApp + ScrollToTop) */}
+      <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-center gap-3">
         {/* Scroll To Top Button */}
         {showScrollTop && (
           <button 
             onClick={scrollToTop}
             aria-label="Voltar ao Topo"
-            className="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-all shadow-md cursor-pointer animate-in fade-in slide-in-from-bottom-2 duration-300"
+            className="p-3 rounded-full bg-slate-900/95 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-700 transition-all shadow-md cursor-pointer animate-in fade-in slide-in-from-bottom-2 duration-300"
           >
             <ArrowUp size={16} />
           </button>
