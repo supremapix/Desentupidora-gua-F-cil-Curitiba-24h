@@ -27,7 +27,7 @@ export function SupremaCredit() {
             
             {/* Logotipo oficial com efeito de iluminação */}
             <img 
-              src="/images/suprema-img.webp" 
+              src="https://img.supremamidia.com/suprema-img.png" 
               alt="Suprema" 
               className="h-[18px] w-auto inline select-none shrink-0 filter drop-shadow-[0_0_2px_rgba(250,204,21,0.5)] transition-transform duration-300 hover:scale-110" 
               referrerPolicy="no-referrer"
