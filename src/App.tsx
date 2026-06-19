@@ -341,14 +341,14 @@ function HomeView({ navigateTo }: { navigateTo: (p: string) => void }) {
   const [activeMobileSlide, setActiveMobileSlide] = useState(0);
 
   const desktopSlides = [
-    "https://img.aguafacil.app.br/slider-desentope-cic-cwb.jpg",
-    "https://img.aguafacil.app.br/slider-desentope-cic.jpg",
-    "https://img.aguafacil.app.br/slider-desentope.jpg"
+    "/images/slider-desentope-cic-cwb.webp",
+    "/images/slider-desentope-cic.webp",
+    "/images/slider-desentope.webp"
   ];
 
   const mobileSlides = [
-    "https://img.aguafacil.app.br/slider-mobile-cic-agua-facil.jpg",
-    "https://img.aguafacil.app.br/slider-mobile-cic.jpg"
+    "/images/slider-mobile-cic-agua-facil.webp",
+    "/images/slider-mobile-cic.webp"
   ];
 
   useEffect(() => {
