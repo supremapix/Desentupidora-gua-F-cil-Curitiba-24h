@@ -195,6 +195,7 @@ async function startServer() {
     });
 
     app.use(vite.middlewares);
+    app.use(express.static(path.join(process.cwd(), "public")));
 
     app.get("*", async (req, res, next) => {
       const url = req.originalUrl;
